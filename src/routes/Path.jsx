@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import Routeguard from "../components/Routeguard";
 import CreateContact from "../components/CreateContact";
 import Userinfo from "../components/Userinfo";
+import UpdateContact from "../components/UpdateContact";
 
 const Path = () => {
   return (
@@ -21,8 +22,30 @@ const Path = () => {
         />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/create" element={<CreateContact />} />
-        <Route path="/userinfo/:id" element={<Userinfo />} />
+        <Route
+          path="/create"
+          element={
+            <Routeguard>
+              <CreateContact />
+            </Routeguard>
+          }
+        />
+        <Route
+          path="/update/:id"
+          element={
+            <Routeguard>
+              <UpdateContact />
+            </Routeguard>
+          }
+        />
+        <Route
+          path="/userinfo/:id"
+          element={
+            <Routeguard>
+              <Userinfo />
+            </Routeguard>
+          }
+        />
       </Routes>
     </div>
   );

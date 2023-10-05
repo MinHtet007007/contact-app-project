@@ -28,8 +28,10 @@ const Login = () => {
   // };
 
   const form = useForm({
-   
-
+    initialValues: {
+      email: "",
+      password: "",
+    },
     validate: {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
       password: (value) =>

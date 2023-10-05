@@ -2,13 +2,23 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { useGetSingleContactQuery } from "../redux/api/contactApi";
 import Cookies from "js-cookie";
-import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
+import { Card, Image, Text, Badge, Button, Group, Loader } from "@mantine/core";
 
 const Userinfo = () => {
   const token = Cookies.get("token");
   const { id } = useParams();
-  const { data: singleContact } = useGetSingleContactQuery({ id, token });
+  const { data: singleContact,isLoading } = useGetSingleContactQuery({ id, token });
 //   console.log(singleContact);
+
+  
+  if (isLoading) {
+    return (
+      <div className=" flex justify-center items-center h-screen">
+        <Loader size="xl" variant="bars" />
+      </div>
+    );
+  }
+  
   return (
     <div>
       <Card

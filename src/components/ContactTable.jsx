@@ -19,7 +19,8 @@ const ContactTable = () => {
   const dispatch = useDispatch();
   const contacts = useSelector((state) => state.contactSlice.contacts);
   const searchTerm = useSelector((state) => state.contactSlice.searchTerm);
-  // console.log(data);
+
+
 
   const deleteHandler = (id) => {
     Swal.fire({
@@ -55,7 +56,7 @@ const ContactTable = () => {
         <td>{contact.name}</td>
         <td>{contact.email === null ? "example@gmail.com" : contact.email}</td>
         <td>{contact.phone}</td>
-        <td>{contact.address === null ? "အိမ်‌ခြေရာမဲ့" : contact.address}</td>
+        <td>{contact.address === null ? "Unknown" : contact.address}</td>
         <td>
           {/* <button
             onClick={() => deleteHandler(contact?.id)}
@@ -69,7 +70,10 @@ const ContactTable = () => {
             </Menu.Target>
             <Menu.Dropdown>
               <Link to={`/userinfo/${contact?.id}`}>
-              <Menu.Item>User Info</Menu.Item>
+                <Menu.Item>User Info</Menu.Item>
+              </Link>
+              <Link to={`/update/${contact?.id}`}>
+                <Menu.Item>Update User Info</Menu.Item>
               </Link>
               <Menu.Item>
                 <p
@@ -85,6 +89,9 @@ const ContactTable = () => {
       </tr>
     ));
 
+  
+
+
   if (isLoading) {
     return (
       <div className=" flex justify-center items-center h-screen">
@@ -94,20 +101,14 @@ const ContactTable = () => {
   }
   return (
     <>
-      <div className=" flex items-center gap-3 justify-center">
+      <div className=" flex items-center gap-3 ms-5 ">
         <Link to={"/create"}>
-          <button className=" bg-blue-500 text-white px-6 py-1 my-5">
+          <button className=" bg-blue-500 text-white px-6 py-1 my-5 rounded">
             Create Contact
           </button>
         </Link>
-        <Input
-          variant="filled"
-          placeholder="Search"
-          value={searchTerm}
-          onChange={(e) => dispatch(setSearchTerm(e.target.value))}
-        />
       </div>
-      <div>
+      <div className=" overflow-auto">
         <Table>
           <thead>
             <tr>
@@ -115,6 +116,7 @@ const ContactTable = () => {
               <th>Email</th>
               <th>Phone</th>
               <th>Address</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>{rows}</tbody>
