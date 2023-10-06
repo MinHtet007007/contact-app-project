@@ -27,7 +27,7 @@ const Navbar = () => {
   return (
     <div className=" flex justify-around p-3 mt-3 shadow">
       <h2 className=" text-2xl text-gray-700">Contact</h2>
-      <div className=" flex gap-5">
+      <div className=" flex gap-3">
         <Input
           variant="filled"
           placeholder="Search"

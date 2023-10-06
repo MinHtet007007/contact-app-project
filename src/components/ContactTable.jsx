@@ -98,10 +98,21 @@ const ContactTable = () => {
         <Loader size="xl" variant="bars" />
       </div>
     );
+  } else if (rows?.length === 0) {
+    return (
+      <div className=" flex justify-center h-[90vh] items-center flex-col">
+        <p className=" text-2xl font-bold">There is no contact!!!</p>
+        <Link to={"/create"}>
+          <button className=" bg-blue-500 text-white px-6 py-1 my-5 rounded">
+            Create Contact
+          </button>
+        </Link>
+      </div>
+    );
   }
   return (
     <>
-      <div className=" flex items-center gap-3 ms-5 ">
+      <div className=" flex items-center gap-3 ms-5 justify-center">
         <Link to={"/create"}>
           <button className=" bg-blue-500 text-white px-6 py-1 my-5 rounded">
             Create Contact
